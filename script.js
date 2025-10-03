@@ -9,6 +9,17 @@ document.getElementById('formulario-descarga').addEventListener('submit', functi
     const nombreArchivo = `${numero}.jpg`;
     const rutaArchivo = `imagenes/${nombreArchivo}`;
 
+    // Paso 1: Usar la API fetch para verificar la existencia del archivo
+    // Se utiliza el método 'HEAD' para solicitar solo los encabezados, lo cual es más rápido y eficiente.
+    
+    fetch(rutaArchivo, { method: 'HEAD' })
+        .then(response => {
+
+           // Paso 2: Verificar el estado de la respuesta
+            if (response.ok) {
+                // El archivo existe (código de estado 200)
+ 
+
     // Crear un enlace de descarga temporal y simular un clic
     const link = document.createElement('a');
     link.href = rutaArchivo;
@@ -18,4 +29,17 @@ document.getElementById('formulario-descarga').addEventListener('submit', functi
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+
+
+} else {
+                // El archivo no existe (código de estado 404)
+                alert(`No encontrado: El archivo ${nombreArchivo} no existe.`);
+            }
+        })
+        .catch(error => {
+            // Manejar posibles errores de red
+            console.error('Error al verificar el archivo:', error);
+            alert('Ocurrió un error al verificar la existencia del archivo.');
+        });
+
 });
