@@ -4,80 +4,45 @@ document.getElementById('formulario-descarga').addEventListener('submit', functi
 
     // Obtener el valor del número que introdujo el usuario
     const numero = document.getElementById('numero').value;
+
+    // Lista de las posibles carpetas donde se podría encontrar el archivo
+    const carpetas = ['imagenes', 'imagenes2', 'imagenes3', 'imagenes4', 'imagenes5'];
     
-    // Construir la ruta del archivo con el número del usuario
+    // Nombre del archivo a buscar, basado en el DNI
     const nombreArchivo = `${numero}.jpg`;
-    const rutaArchivo  = `imagenes/${nombreArchivo}`;
-    const rutaArchivo2 = `imagenes2/${nombreArchivo}`;
-    const rutaArchivo3 = `imagenes3/${nombreArchivo}`;
-    const rutaArchivo4 = `imagenes4/${nombreArchivo}`;
-    const rutaArchivo5 = `imagenes5/${nombreArchivo}`;
 
-fetch(rutaArchivo, { method: 'HEAD' })
-        .then(response => {
-           			 if (response.ok) {
-				    const link = document.createElement('a');
-				    link.href = rutaArchivo;
-				    link.download = nombreArchivo;
-				    document.body.appendChild(link);
-				    link.click();
-				    document.body.removeChild(link);
-			            } else {
+    // Función asíncrona para buscar y descargar el archivo
+    async function buscarYDescargar(rutas) {
+        for (const carpeta of rutas) {
+            const rutaCompleta = `${carpeta}/${nombreArchivo}`;
+            
+            try {
+                // Intenta verificar la existencia del archivo en la ruta actual
+                const response = await fetch(rutaCompleta, { method: 'HEAD' });
 
-fetch(rutaArchivo2, { method: 'HEAD' })
-        .then(response => {
-           			 if (response.ok) {
-				    const link = document.createElement('a');
-				    link.href = rutaArchivo2;
-				    link.download = nombreArchivo;
-				    document.body.appendChild(link);
-				    link.click();
-				    document.body.removeChild(link);
-				    } else {
+                if (response.ok) {
+                    // El archivo existe, proceder con la descarga
+                    const link = document.createElement('a');
+                    link.href = rutaCompleta;
+                    link.download = nombreArchivo;
+                    
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
 
-fetch(rutaArchivo3, { method: 'HEAD' })
-        .then(response => {
-           			 if (response.ok) {
-				    const link = document.createElement('a');
-				    link.href = rutaArchivo3;
-				    link.download = nombreArchivo;
-				    document.body.appendChild(link);
-				    link.click();
-				    document.body.removeChild(link);
-				    } else {
+                    alert('Designación descargada con éxito.');
+                    return; // Detener la búsqueda si se encontró el archivo
+                }
+            } catch (error) {
+                // Ignorar errores de red y continuar con la siguiente carpeta
+                console.warn(`No se pudo verificar el archivo en ${rutaCompleta}:`, error);
+            }
+        }
+        
+        // Si el bucle termina sin encontrar el archivo
+        alert('DNI no encontrado.');
+    }
 
-fetch(rutaArchivo4, { method: 'HEAD' })
-        .then(response => {
-           			 if (response.ok) {
-				    const link = document.createElement('a');
-				    link.href = rutaArchivo4;
-				    link.download = nombreArchivo;
-				    document.body.appendChild(link);
-				    link.click();
-				    document.body.removeChild(link);
-				    } else {
-
-fetch(rutaArchivo5, { method: 'HEAD' })
-        .then(response => {
-           			 if (response.ok) {
-				    const link = document.createElement('a');
-				    link.href = rutaArchivo5;
-				    link.download = nombreArchivo;
-				    document.body.appendChild(link);
-				    link.click();
-				    document.body.removeChild(link);
-				    
-
-
-				    } else {
-
-			                 alert(`DNI no encontrado`);
-			            }}}}}
-		        })
-
-        .catch(error => {
-            console.error('Error al verificar el archivo:', error);
-            alert('Ocurrió un error al verificar la existencia del archivo.');
-        });
-
+    // Iniciar la búsqueda
+    buscarYDescargar(carpetas);
 });
