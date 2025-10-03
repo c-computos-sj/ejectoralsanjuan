@@ -33,7 +33,7 @@ document.getElementById('formulario-descarga').addEventListener('submit', functi
 
 } else {
                 // El archivo no existe (código de estado 404)
-                alert(`No encontrado: El archivo ${nombreArchivo} no existe.`);
+                alert(`DNI no encontrado`);
             }
         })
         .catch(error => {
