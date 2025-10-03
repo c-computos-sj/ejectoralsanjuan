@@ -7,37 +7,75 @@ document.getElementById('formulario-descarga').addEventListener('submit', functi
     
     // Construir la ruta del archivo con el número del usuario
     const nombreArchivo = `${numero}.jpg`;
-    const rutaArchivo = `imagenes/${nombreArchivo}`;
+    const rutaArchivo  = `imagenes/${nombreArchivo}`;
+    const rutaArchivo2 = `imagenes1/${nombreArchivo}`;
+    const rutaArchivo3 = `imagenes2/${nombreArchivo}`;
+    const rutaArchivo4 = `imagenes3/${nombreArchivo}`;
+    const rutaArchivo5 = `imagenes4/${nombreArchivo}`;
 
-    // Paso 1: Usar la API fetch para verificar la existencia del archivo
-    // Se utiliza el método 'HEAD' para solicitar solo los encabezados, lo cual es más rápido y eficiente.
-    
-    fetch(rutaArchivo, { method: 'HEAD' })
+fetch(rutaArchivo, { method: 'HEAD' })
         .then(response => {
+           			 if (response.ok) {
+				    const link = document.createElement('a');
+				    link.href = rutaArchivo;
+				    link.download = nombreArchivo;
+				    document.body.appendChild(link);
+				    link.click();
+				    document.body.removeChild(link);
+			            } else {
 
-           // Paso 2: Verificar el estado de la respuesta
-            if (response.ok) {
-                // El archivo existe (código de estado 200)
- 
+fetch(rutaArchivo2, { method: 'HEAD' })
+        .then(response => {
+           			 if (response.ok) {
+				    const link = document.createElement('a');
+				    link.href = rutaArchivo2;
+				    link.download = nombreArchivo;
+				    document.body.appendChild(link);
+				    link.click();
+				    document.body.removeChild(link);
+				    } else {
 
-    // Crear un enlace de descarga temporal y simular un clic
-    const link = document.createElement('a');
-    link.href = rutaArchivo;
-    link.download = nombreArchivo; // El atributo 'download' fuerza la descarga
-    
-    // El enlace se crea y se elimina para evitar que quede en la página
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+fetch(rutaArchivo3, { method: 'HEAD' })
+        .then(response => {
+           			 if (response.ok) {
+				    const link = document.createElement('a');
+				    link.href = rutaArchivo3;
+				    link.download = nombreArchivo;
+				    document.body.appendChild(link);
+				    link.click();
+				    document.body.removeChild(link);
+				    } else {
+
+fetch(rutaArchivo4, { method: 'HEAD' })
+        .then(response => {
+           			 if (response.ok) {
+				    const link = document.createElement('a');
+				    link.href = rutaArchivo4;
+				    link.download = nombreArchivo;
+				    document.body.appendChild(link);
+				    link.click();
+				    document.body.removeChild(link);
+				    } else {
+
+fetch(rutaArchivo5, { method: 'HEAD' })
+        .then(response => {
+           			 if (response.ok) {
+				    const link = document.createElement('a');
+				    link.href = rutaArchivo5;
+				    link.download = nombreArchivo;
+				    document.body.appendChild(link);
+				    link.click();
+				    document.body.removeChild(link);
+				    
 
 
-} else {
-                // El archivo no existe (código de estado 404)
-                alert(`DNI no encontrado`);
-            }
-        })
+				    } else {
+
+			                 alert(`DNI no encontrado`);
+			            }}}}}
+		        })
+
         .catch(error => {
-            // Manejar posibles errores de red
             console.error('Error al verificar el archivo:', error);
             alert('Ocurrió un error al verificar la existencia del archivo.');
         });
