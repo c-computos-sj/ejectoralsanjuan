@@ -8,10 +8,10 @@ document.getElementById('formulario-descarga').addEventListener('submit', functi
     // Construir la ruta del archivo con el número del usuario
     const nombreArchivo = `${numero}.jpg`;
     const rutaArchivo  = `imagenes/${nombreArchivo}`;
-    const rutaArchivo2 = `imagenes1/${nombreArchivo}`;
-    const rutaArchivo3 = `imagenes2/${nombreArchivo}`;
-    const rutaArchivo4 = `imagenes3/${nombreArchivo}`;
-    const rutaArchivo5 = `imagenes4/${nombreArchivo}`;
+    const rutaArchivo2 = `imagenes2/${nombreArchivo}`;
+    const rutaArchivo3 = `imagenes3/${nombreArchivo}`;
+    const rutaArchivo4 = `imagenes4/${nombreArchivo}`;
+    const rutaArchivo5 = `imagenes5/${nombreArchivo}`;
 
 fetch(rutaArchivo, { method: 'HEAD' })
         .then(response => {
