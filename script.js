@@ -6,7 +6,7 @@ document.getElementById('formulario-descarga').addEventListener('submit', functi
     const numero = document.getElementById('numero').value;
 
     // Lista de las posibles carpetas donde se podría encontrar el archivo
-    const carpetas = ['imagenes', 'imagenes0', 'imagenes1', 'imagenes2', 'imagenes3', 'imagenes4', 'imagenes5'];
+    const carpetas = ['imagenes', 'imagenes10', 'imagenes20', 'imagenes25', 'imagenes30', 'imagenes35', 'imagenes40', 'imagenes45'];
     
     // Nombre del archivo a buscar, basado en el DNI
     const nombreArchivo = `${numero}.jpg`;
