@@ -40,7 +40,7 @@ document.getElementById('formulario-descarga').addEventListener('submit', functi
         }
         
         // Si el bucle termina sin encontrar el archivo
-        alert('DNI no encontrado.');
+        alert('Ud. no ha sido designado Autoridad de Mesa');
     }
 
     // Iniciar la búsqueda
